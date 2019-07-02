@@ -1,0 +1,17 @@
+{
+	"Lisa":	{
+		"num":	1,
+		"class":	11,
+		"passwd":	123456
+	},
+	"Bob":	{
+		"num":	2,
+		"class":	12,
+		"passwd":	123456
+	},
+	"Jobs":	{
+		"num":	13,
+		"class":	13,
+		"passwd":	123456
+	}
+}
