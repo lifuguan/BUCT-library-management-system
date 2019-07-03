@@ -29,10 +29,10 @@
     <ClInclude Include="cJSON.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DataQuery.h">
+    <ClInclude Include="Students.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Students.h">
+    <ClInclude Include="StuJsonOperate.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,6 +18,9 @@ void ProcessTest()
 	cJSON_Delete(json);
 }
 
+/*
+@File_ReadStueInfoToJson() :
+*/
 cJSON* File_ReadStueInfoToJson()
 {
 	FILE* fp;
@@ -37,8 +40,9 @@ cJSON* File_ReadStueInfoToJson()
 	{
 		printf("\033[47;31mOpen file correctly!\n\033[0m");
 	}
+	//解析Json
 	cJSON* json = cJSON_Parse(buff);
-	printf("data:\n%s\n", json_data = cJSON_Print(json));
+
 	free(json_data);
 	return json;
 }
@@ -46,27 +50,29 @@ cJSON* File_ReadStueInfoToJson()
 /*
 @File_AddStuInfoToJson() : 
 */
-void File_AddStuInfoToJson(cJSON* json)
+cJSON* File_AddStuInfoToJson(cJSON* json, char name[10], 
+	char passwd[10], int classNumber, int stuNumber)
 {
 	cJSON* memberDetail = cJSON_CreateObject();
 	char* buffer;
 	FILE* fp;
 
 	//生成嵌套json对象
-	cJSON_AddNumberToObject(memberDetail, "num", 13);
-	cJSON_AddNumberToObject(memberDetail, "class", 13);
-	cJSON_AddNumberToObject(memberDetail, "passwd", 123456);
-	cJSON_AddItemToObject(json, "Jobs", memberDetail);
+	cJSON_AddNumberToObject(memberDetail, "stuNumber", stuNumber);
+	cJSON_AddNumberToObject(memberDetail, "classNumber", classNumber);
+	cJSON_AddStringToObject(memberDetail, "passwd", passwd);
+	cJSON_AddNumberToObject(memberDetail, "bookNum", 0);
+	cJSON_AddArrayToObject(memberDetail, passwd);
+	cJSON_AddItemToObject(json, name, memberDetail);
 
 	//将json结构格式化到缓冲区
 	buffer = cJSON_Print(json);
-
+	printf("data:\n%s\n", buffer = cJSON_Print(json));
 	//打开文件写入json内容
 	fp = fopen("data.json", "w");
 	fwrite(buffer, strlen(buffer), 1, fp);
 	free(buffer);
 	fclose(fp);
 
-	//释放json结构所占用的内存
-	cJSON_Delete(json);
+	return json;
 }

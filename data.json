@@ -1,17 +1,23 @@
 {
 	"Lisa":	{
-		"num":	1,
-		"class":	11,
-		"passwd":	123456
-	},
-	"Bob":	{
-		"num":	2,
-		"class":	12,
-		"passwd":	123456
+		"stuNumber":	1,
+		"classNumber":	11,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"bookLists":	[]
 	},
 	"Jobs":	{
-		"num":	13,
-		"class":	13,
-		"passwd":	123456
+		"stuNumber":	2018040206,
+		"classNumber":	123456,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"123456":	[]
+	},
+	"steve":	{
+		"stuNumber":	2018040206,
+		"classNumber":	123,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"123456":	[]
 	}
 }
