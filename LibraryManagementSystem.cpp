@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
 				scanf("%s", &passwdText);
 			}
 			//Json交互
-			stuJson = File_AddStuInfoToJson(File_ReadStueInfoToJson(), name, passwd, classNumber, stuNumber);
+			stuJson = File_AddStuInfoToJson(File_ReadStuInfoToJson(), name, passwd, classNumber, stuNumber);
 			printf("                          ");
 			printf_s("\033[32;32m<<<<<<<<<<<<<<<<注册成功！>>>>>>>>>>>>>>>>>>\n\033[0m");
 			printf("                          \n");
@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
 			{
 				printf_s("                          * 请输入您的密码:");
 				scanf("%s", &passwd);
-				stuJson = File_ReadStueInfoToJson();
+				stuJson = File_ReadStuInfoToJson();
 				bool res = FILE_StuPasswdCompare(stuJson, name, passwd);
 
 				if (res == true)

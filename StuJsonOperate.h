@@ -8,6 +8,10 @@
 #include "cJSON.h"
 #include<stdio.h>
 #include <string>
+/*
+@JsonParseTest() : Json 解析测试函数，没啥卵用（没调用）
+@返回 ： 无
+*/
 void JsonParseTest()
 {
 	char  data[] = "{\"love\":[\"LOL\",\"Go shopping 哈哈哈\"]}";
@@ -19,9 +23,10 @@ void JsonParseTest()
 }
 
 /*
-@File_ReadStueInfoToJson() :
+@File_ReadStuInfoToJson() : 从data.json文件中读取并解析成json格式
+@返回 ： 装载Json结构体的指针
 */
-cJSON* File_ReadStueInfoToJson()
+cJSON* File_ReadStuInfoToJson()
 {
 	FILE* fp;
 	if ((fp = fopen("data.json", "r+")) == NULL)
@@ -48,7 +53,8 @@ cJSON* File_ReadStueInfoToJson()
 }
 
 /*
-@File_AddStuInfoToJson() : 
+@File_AddStuInfoToJson() : 将学生信息加载进json结构体中并写入data.json文件
+@返回 ： 成功后再次返回Json结构体的指针
 */
 cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10], 
 	char passwd[10], int classNumber, int stuNumber)
@@ -78,7 +84,8 @@ cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10],
 }
 
 /*
-@FILE_StuPasswdQuery() :
+@FILE_StuPasswdQuery() :从Json结构体中读取学生的密码并比较
+@返回 ： 正确（true）/ 错误（false）
 */
 bool FILE_StuPasswdCompare(cJSON* stuJson, char name[10], char passwd[10])
 {
