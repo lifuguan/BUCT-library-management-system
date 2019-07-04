@@ -6,53 +6,53 @@
 		"bookNum":	0,
 		"bookLists":	[]
 	},
-	"Jobs":	{
-		"stuNumber":	2018040206,
-		"classNumber":	123456,
-		"passwd":	"123456",
-		"bookNum":	0,
-		"123456":	[]
-	},
-	"steve":	{
-		"stuNumber":	2018040206,
-		"classNumber":	123,
-		"passwd":	"123456",
-		"bookNum":	0,
-		"123456":	[]
-	},
-	"li":	{
-		"stuNumber":	2018040206,
-		"classNumber":	13,
-		"passwd":	"123456",
-		"bookNum":	0,
-		"123456":	[]
-	},
-	"bill":	{
-		"stuNumber":	2018040206,
-		"classNumber":	13,
-		"passwd":	"123456",
-		"bookNum":	0,
-		"123456":	[]
-	},
-	"peter":	{
-		"stuNumber":	2018040215,
-		"classNumber":	1808,
-		"passwd":	"123qwe",
-		"bookNum":	0,
-		"123qwe":	[]
-	},
-	"anbing":	{
-		"stuNumber":	2018040216,
-		"classNumber":	1808,
-		"passwd":	"123",
-		"bookNum":	0,
-		"123":	[]
-	},
+  "Jobs": {
+    "stuNumber": 2018040206,
+    "classNumber": 123456,
+    "passwd": "123456",
+    "bookNum": 0,
+    "bookLists": []
+  },
+  "steve": {
+    "stuNumber": 2018040206,
+    "classNumber": 123,
+    "passwd": "123456",
+    "bookNum": 0,
+    "bookLists": []
+  },
+  "li": {
+    "stuNumber": 2018040206,
+    "classNumber": 13,
+    "passwd": "123456",
+    "bookNum": 0,
+    "bookLists": []
+  },
+  "bill": {
+    "stuNumber": 2018040206,
+    "classNumber": 13,
+    "passwd": "123456",
+    "bookNum": 0,
+    "bookLists": []
+  },
+  "peter": {
+    "stuNumber": 2018040215,
+    "classNumber": 1808,
+    "passwd": "123qwe",
+    "bookNum": 0,
+    "bookLists": []
+  },
+  "anbing": {
+    "stuNumber": 2018040216,
+    "classNumber": 1808,
+    "passwd": "123",
+    "bookNum": 0,
+    "bookLists": []
+  },
 	"Íõ666":	{
 		"stuNumber":	2018040215,
 		"classNumber":	1808,
 		"passwd":	"123qwe",
 		"bookNum":	0,
-		"123qwe":	[]
+		"bookLists":	[]
 	}
 }

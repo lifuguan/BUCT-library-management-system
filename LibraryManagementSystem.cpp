@@ -5,31 +5,49 @@
 #define _SIGN_UP 1
 #define _SIGN_IN 2
 #define _ADMIN 3
+#define _ADMIN_ACCOUNT "root"
+#define _ADMIN_PASSWD "root"
 #include "StuJsonOperate.h"
 #include<stdio.h>
 #include<string.h>
-
+//#include <Windows.h>
 //全局保存json学生对象
 cJSON * stuJson;
 
 int main(int argc, char* argv[])
 {
 	printf("\n\n\n\033[31m*                **********             **          **              *********           ************                  *\n");
+	//Sleep(100);
 	printf("*                **********             **          **             **********           ************                  *\n");
+	//Sleep(100);
 	printf("*                **       **            **          **            **                         **                       *\n");
+	//Sleep(100);
 	printf("*                **        **           **          **            **                         **                       *\n");
+	//Sleep(100);
 	printf("*                **        **           **          **           **                          **                       *\n");
+	//Sleep(100);
 	printf("*                **       **            **          **           **                          **                       *\n");
+	//Sleep(100);
 	printf("*                **********             **          **           **                          **                       *\n");
+	//Sleep(100);
 	printf("*                **********             **          **           **                          **                       *\n");
+	//Sleep(100);
 	printf("*                **       **            **          **           **                          **                       *\n");
+	//Sleep(100);
 	printf("*                **        **           **          **           **                          **                       *\n");
+	//Sleep(100);
 	printf("*                **        **           **          **            **                         **                       *\n");
+	//Sleep(100);
 	printf("*                **       **             **        **             **                         **                       *\n");
+	//Sleep(100);
 	printf("*                **********               **********               **********                **                       *\n");
+	//Sleep(100);
 	printf("*                **********                ********                 *********                **                       *\n\033[0m\n");
+	//Sleep(100);
 	printf_s("\n------------------------------------------------------------------------------------------------------------------------\n");
+	//Sleep(100);
 	printf_s("------------------------------------------------------------------------------------------------------------------------\n");
+	//Sleep(100);
 	printf_s("                          *********************欢迎使用北京化工大学图书管理系统********************\n");
 	int actionSelect;
 	int stuNumber, classNumber;
@@ -110,9 +128,12 @@ int main(int argc, char* argv[])
 		}
 		else if (actionSelect == _ADMIN)
 		{
-			if (true)
+			char admin_account[10], admin_passwd[10];
+			scanf("%s", &admin_account);
+			scanf("%s", &admin_passwd);
+			if (strcmp(admin_account, _ADMIN_ACCOUNT) != 0)
 			{
-
+				//printf("")
 			}
 		}
 		else

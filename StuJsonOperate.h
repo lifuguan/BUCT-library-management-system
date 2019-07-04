@@ -62,7 +62,7 @@ cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10],
 	cJSON_AddNumberToObject(memberDetail, "classNumber", classNumber);
 	cJSON_AddStringToObject(memberDetail, "passwd", passwd);
 	cJSON_AddNumberToObject(memberDetail, "bookNum", 0);
-	cJSON_AddArrayToObject(memberDetail, passwd);
+	cJSON_AddArrayToObject(memberDetail, "bookLists");
 	cJSON_AddItemToObject(stuJson, name, memberDetail);
 
 	//将Json结构格式化到缓冲区

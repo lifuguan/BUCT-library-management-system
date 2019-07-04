@@ -155,12 +155,13 @@
     <ClCompile Include="LibraryManagementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Book.h" />
+    <ClInclude Include="BookJsonOperate.h" />
     <ClInclude Include="cJSON.h" />
     <ClInclude Include="StuJsonOperate.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />
+    <None Include="data_books.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

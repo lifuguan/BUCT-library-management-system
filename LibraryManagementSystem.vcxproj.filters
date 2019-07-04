@@ -23,17 +23,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Book.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="cJSON.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="StuJsonOperate.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BookJsonOperate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data.json" />
+    <None Include="data.json">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="data_books.json">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>
