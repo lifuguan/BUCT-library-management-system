@@ -26,5 +26,33 @@
 		"passwd":	"123456",
 		"bookNum":	0,
 		"123456":	[]
+	},
+	"bill":	{
+		"stuNumber":	2018040206,
+		"classNumber":	13,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"123456":	[]
+	},
+	"peter":	{
+		"stuNumber":	2018040215,
+		"classNumber":	1808,
+		"passwd":	"123qwe",
+		"bookNum":	0,
+		"123qwe":	[]
+	},
+	"anbing":	{
+		"stuNumber":	2018040216,
+		"classNumber":	1808,
+		"passwd":	"123",
+		"bookNum":	0,
+		"123":	[]
+	},
+	"Íõ666":	{
+		"stuNumber":	2018040215,
+		"classNumber":	1808,
+		"passwd":	"123qwe",
+		"bookNum":	0,
+		"123qwe":	[]
 	}
 }
