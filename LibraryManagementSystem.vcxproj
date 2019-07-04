@@ -158,7 +158,6 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="cJSON.h" />
     <ClInclude Include="StuJsonOperate.h" />
-    <ClInclude Include="Students.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />

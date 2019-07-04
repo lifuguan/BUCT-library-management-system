@@ -1,5 +1,5 @@
 /*
-@author : Li Hao
+@author : Li Hao, Fu Ning
 @initalize date : 2019.7.2
 */
 
@@ -8,14 +8,14 @@
 #include "cJSON.h"
 #include<stdio.h>
 #include <string>
-void ProcessTest()
+void JsonParseTest()
 {
 	char  data[] = "{\"love\":[\"LOL\",\"Go shopping 哈哈哈\"]}";
-	cJSON* json = cJSON_Parse(data);
+	cJSON* stuJson = cJSON_Parse(data);
 	char* json_data = NULL;
-	printf("data:%s\n", json_data = cJSON_Print(json));
+	printf("data:%s\n", json_data = cJSON_Print(stuJson));
 	free(json_data);
-	cJSON_Delete(json);
+	cJSON_Delete(stuJson);
 }
 
 /*
@@ -41,38 +41,73 @@ cJSON* File_ReadStueInfoToJson()
 		printf("\033[47;31mOpen file correctly!\n\033[0m");
 	}
 	//解析Json
-	cJSON* json = cJSON_Parse(buff);
+	cJSON* stuJson = cJSON_Parse(buff);
 
 	free(json_data);
-	return json;
+	return stuJson;
 }
 
 /*
 @File_AddStuInfoToJson() : 
 */
-cJSON* File_AddStuInfoToJson(cJSON* json, char name[10], 
+cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10], 
 	char passwd[10], int classNumber, int stuNumber)
 {
 	cJSON* memberDetail = cJSON_CreateObject();
 	char* buffer;
 	FILE* fp;
 
-	//生成嵌套json对象
+	//生成嵌套Json对象
 	cJSON_AddNumberToObject(memberDetail, "stuNumber", stuNumber);
 	cJSON_AddNumberToObject(memberDetail, "classNumber", classNumber);
 	cJSON_AddStringToObject(memberDetail, "passwd", passwd);
 	cJSON_AddNumberToObject(memberDetail, "bookNum", 0);
 	cJSON_AddArrayToObject(memberDetail, passwd);
-	cJSON_AddItemToObject(json, name, memberDetail);
+	cJSON_AddItemToObject(stuJson, name, memberDetail);
 
-	//将json结构格式化到缓冲区
-	buffer = cJSON_Print(json);
-	printf("data:\n%s\n", buffer = cJSON_Print(json));
-	//打开文件写入json内容
+	//将Json结构格式化到缓冲区
+	buffer = cJSON_Print(stuJson);
+	printf("data:\n%s\n", buffer = cJSON_Print(stuJson));
+	//打开文件写入Json内容
 	fp = fopen("data.json", "w");
 	fwrite(buffer, strlen(buffer), 1, fp);
 	free(buffer);
 	fclose(fp);
 
-	return json;
+	return stuJson;
+}
+
+/*
+@FILE_StuPasswdQuery() :
+*/
+bool FILE_StuPasswdCompare(cJSON* stuJson, char name[10], char passwd[10])
+{
+	char passwdQuery[10];
+	if (stuJson == NULL)
+	{
+		const char* errorPtr = cJSON_GetErrorPtr();
+		if (errorPtr != NULL)
+		{
+			fprintf(stderr, "出现错误: %s\n", errorPtr);
+		}
+		return NULL;
+	}
+	cJSON* individualInfo = cJSON_GetObjectItem(stuJson, name);
+	cJSON* item = cJSON_GetObjectItem(individualInfo, "passwd");
+	memcpy(passwdQuery, item->valuestring, strlen(item->valuestring));
+
+	//长度不一致 false
+	if (strlen(item->valuestring) != strlen(passwd))
+	{
+		return false;
+	}
+	//字符不一致  错误
+	for (int i = 0; i < strlen(passwd); i++)
+	{
+		if (passwd[i] != passwdQuery[i])
+		{
+			return false;
+		}
+	}
+	return true;
 }

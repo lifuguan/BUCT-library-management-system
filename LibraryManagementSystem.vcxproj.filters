@@ -29,9 +29,6 @@
     <ClInclude Include="cJSON.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Students.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="StuJsonOperate.h">
       <Filter>头文件</Filter>
     </ClInclude>

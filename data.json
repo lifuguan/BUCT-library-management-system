@@ -19,5 +19,12 @@
 		"passwd":	"123456",
 		"bookNum":	0,
 		"123456":	[]
+	},
+	"li":	{
+		"stuNumber":	2018040206,
+		"classNumber":	13,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"123456":	[]
 	}
 }
