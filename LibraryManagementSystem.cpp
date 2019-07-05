@@ -11,8 +11,9 @@
 #include<stdio.h>
 #include<string.h>
 //#include <Windows.h>
-//全局保存json学生对象
-cJSON * stuJson;
+
+//全局保存json学生对象,图书对象
+cJSON * stuJson, bookJson;
 
 int main(int argc, char* argv[])
 {
@@ -51,7 +52,7 @@ int main(int argc, char* argv[])
 	printf_s("                          *********************欢迎使用北京化工大学图书管理系统********************\n");
 	int actionSelect;
 	int stuNumber, classNumber;
-	char name[10], passwd[10], passwdText[10];
+	char name[50], passwd[50], passwdText[50];
 	while (true)
 	{
 		printf_s("                          * 请选择您将要进行的操作：注册请输入'1'，登陆请输入'2'，管理员请输入'3'\n");
@@ -68,7 +69,7 @@ int main(int argc, char* argv[])
 			scanf("%s", &name);
 			printf_s("                          * 请输入您的学号:");
 			scanf("%d", &stuNumber);
-			while (2017000000 > stuNumber || stuNumber > 2019999999)
+			while (2015000000 > stuNumber || stuNumber > 2019999999)
 			{
 				printf_s("                          * 请再次确认您的学号:");
 				scanf("%d", &stuNumber);;

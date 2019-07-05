@@ -36,7 +36,7 @@ cJSON* File_ReadBooksInfoToJson()
 }
 
 /*
-@File_AddBookInfoToJson() : 将学生信息加载进json结构体中并写入data_book.json文件
+@File_AddBookInfoToJson() : 将图书信息加载进json结构体中并写入data_book.json文件
 @返回 ： 成功后再次返回Json结构体的指针
 */
 cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
@@ -47,15 +47,14 @@ cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
 	FILE* fp;
 
 	//生成嵌套Json对象
-	cJSON_AddStringToObject(memberDetail, "bookname", bookname);
+	cJSON_AddStringToObject(memberDetail, "bookNo", bookNo);
 	cJSON_AddStringToObject(memberDetail, "publisher", publisher);
 	cJSON_AddStringToObject(memberDetail, "date", date);
 	cJSON_AddNumberToObject(memberDetail, "count", count);
-	cJSON_AddItemToObject(stuJson, bookNo, memberDetail);
+	cJSON_AddItemToObject(stuJson, bookname, memberDetail);
 
 	//将Json结构格式化到缓冲区
 	buffer = cJSON_Print(stuJson);
-	printf("data:\n%s\n", buffer = cJSON_Print(stuJson));
 	//打开文件写入Json内容
 	fp = fopen("data_book.json", "w");
 	fwrite(buffer, strlen(buffer), 1, fp);
@@ -100,4 +99,35 @@ bool FILE_StuPasswdCompare(cJSON* stuJson, char name[10], char passwd[10])
 		}
 	}
 	return true;
+}
+
+
+void FILE_StuBrorrowOperate(cJSON* bookJson, cJSON* stuJson, char bookname[50])
+{
+	char* buffer_book, * buffer_stu;
+	FILE* fp_book, * fp_stu;
+
+
+	//将Json结构格式化到缓冲区
+	buffer_stu = cJSON_Print(stuJson);
+	buffer_book = cJSON_Print(stuJson);
+	//打开文件写入Json内容
+	fp_stu = fopen("data.json", "w");
+	fp_book = fopen("data_book.json", "w");
+
+	fwrite(buffer_stu, strlen(buffer_stu), 1, fp_stu);
+	fwrite(buffer_book, strlen(buffer_book), 1, fp_book);
+
+	fflush(fp_stu);
+	fflush(fp_book);
+
+	free(buffer_stu);
+	free(buffer_book);
+
+	fclose(fp_stu);
+	fclose(fp_book);
+}
+void FILE_AdminAddBookInfoToJson(cJSON* bookJson, char bookname[50])
+{
+
 }

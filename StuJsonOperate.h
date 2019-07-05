@@ -44,6 +44,7 @@ cJSON* File_ReadStuInfoToJson()
 	if (fread(buff, 1023, 1, fp)>=1023)
 	{
 		printf("\033[47;31mOpen file correctly!\n\033[0m");
+		return NULL;
 	}
 	//解析Json
 	cJSON* stuJson = cJSON_Parse(buff);
@@ -59,7 +60,9 @@ cJSON* File_ReadStuInfoToJson()
 cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10], 
 	char passwd[10], int classNumber, int stuNumber)
 {
+	//创建学生成员对象
 	cJSON* memberDetail = cJSON_CreateObject();
+
 	char* buffer;
 	FILE* fp;
 
@@ -73,11 +76,15 @@ cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10],
 
 	//将Json结构格式化到缓冲区
 	buffer = cJSON_Print(stuJson);
-	printf("data:\n%s\n", buffer = cJSON_Print(stuJson));
-	//打开文件写入Json内容
+	//打开文件
 	fp = fopen("data.json", "w");
+	//写入Json内容
 	fwrite(buffer, strlen(buffer), 1, fp);
+	//刷新缓存区，及时写入
+	fflush(fp);
+	//释放内存
 	free(buffer);
+	//关闭文件
 	fclose(fp);
 
 	return stuJson;
@@ -87,9 +94,9 @@ cJSON* File_AddStuInfoToJson(cJSON* stuJson, char name[10],
 @FILE_StuPasswdQuery() :从Json结构体中读取学生的密码并比较
 @返回 ： 正确（true）/ 错误（false）
 */
-bool FILE_StuPasswdCompare(cJSON* stuJson, char name[10], char passwd[10])
+bool FILE_StuPasswdCompare(cJSON* stuJson, char name[50], char passwd[50])
 {
-	char passwdQuery[10];
+	char passwdQuery[50];
 	if (stuJson == NULL)
 	{
 		const char* errorPtr = cJSON_GetErrorPtr();
@@ -99,8 +106,11 @@ bool FILE_StuPasswdCompare(cJSON* stuJson, char name[10], char passwd[10])
 		}
 		return NULL;
 	}
+	//读取学生个人信息
 	cJSON* individualInfo = cJSON_GetObjectItem(stuJson, name);
+	//读取密码
 	cJSON* item = cJSON_GetObjectItem(individualInfo, "passwd");
+	//分配数组内存
 	memcpy(passwdQuery, item->valuestring, strlen(item->valuestring));
 
 	//长度不一致 false
