@@ -1,8 +1,8 @@
 {
-  "bookname": {
-    "bookNo": "00001",
-    "publisher": "publisher",
-    "date": "2019.1.1",
-    "count": 1
-  }
+	"bookName":	{
+		"bookNo":	"00001",
+		"publisher":	"publisher",
+		"date":	"2019.1.1",
+		"count":	2
+	}
 }

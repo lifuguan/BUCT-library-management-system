@@ -15,50 +15,8 @@
 	},
 	"li":	{
 		"stuNumber":	2018040206,
-		"classNumber":	13,
-		"passwd":	"123",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"bill":	{
-		"stuNumber":	2018040206,
-		"classNumber":	123,
-		"passwd":	"1wd5w4d",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"李昊":	{
-		"stuNumber":	2018040206,
-		"classNumber":	13,
-		"passwd":	"323ggud",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"sph":	{
-		"stuNumber":	2018040215,
 		"classNumber":	1808,
-		"passwd":	"1w5d4dw5d4w5d4e4ee24524",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"酷酷酷":	{
-		"stuNumber":	2018040222,
-		"classNumber":	123,
-		"passwd":	"俺是个大",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"funing":	{
-		"stuNumber":	2018040201,
-		"classNumber":	111,
-		"passwd":	"54613231",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"wps":	{
-		"stuNumber":	2018040200,
-		"classNumber":	1808,
-		"passwd":	"123456",
+		"passwd":	"123456dw",
 		"bookNum":	0,
 		"bookLists":	[]
 	}

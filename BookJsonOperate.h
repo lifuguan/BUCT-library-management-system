@@ -3,22 +3,22 @@
 #include "cJSON.h"
 #include<stdio.h>
 #include <string>
-
+#define LENGTH 2048
+char buff[LENGTH] = {};
 
 /*
-@File_ReadBooksInfoToJson() : 从data_book.json文件中读取并解析成json格式
+@File_ReadBooksInfoFromJson() : 从data_books.json文件中读取并解析成json格式
 @返回 ： 装载Json结构体的指针
 */
-cJSON* File_ReadBooksInfoToJson()
+cJSON* File_ReadBooksInfoFromJson()
 {
 	FILE* fp;
-	if ((fp = fopen("data_book.json", "r+")) == NULL)
+	if ((fp = fopen("data_books.json", "r+")) == NULL)
 	{
 		printf("\033[47;31mCan't open file correctly!\033[0m");
 		return NULL;
 	}
-
-	char buff[1024] = {};
+	
 	char* json_data = NULL;
 
 	/*
@@ -36,7 +36,7 @@ cJSON* File_ReadBooksInfoToJson()
 }
 
 /*
-@File_AddBookInfoToJson() : 将图书信息加载进json结构体中并写入data_book.json文件
+@File_AddBookInfoToJson() : 将图书信息加载进json结构体中并写入data_books.json文件
 @返回 ： 成功后再次返回Json结构体的指针
 */
 cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
@@ -56,7 +56,7 @@ cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
 	//将Json结构格式化到缓冲区
 	buffer = cJSON_Print(stuJson);
 	//打开文件写入Json内容
-	fp = fopen("data_book.json", "w");
+	fp = fopen("data_books.json", "w");
 	fwrite(buffer, strlen(buffer), 1, fp);
 	fflush(fp);
 	free(buffer);
@@ -66,43 +66,42 @@ cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
 }
 
 /*
-@FILE_StuPasswdQuery() :从Json结构体中读取学生的密码并比较
-@返回 ： 正确（true）/ 错误（false）
+@FILE_ModifyBookInfoToJson() : 从Json结构体中修改图书信息(数目)
+@param 2 : 书本姓名
+@param 3 : 增加/减少数量
 */
-bool FILE_StuPasswdCompare(cJSON* stuJson, char name[10], char passwd[10])
+void FILE_ModifyBookInfoToJson(cJSON* bookJson, char bookName[50], int count)
 {
-	char passwdQuery[10];
-	if (stuJson == NULL)
+	if (bookJson == NULL)
 	{
 		const char* errorPtr = cJSON_GetErrorPtr();
 		if (errorPtr != NULL)
 		{
 			fprintf(stderr, "出现错误: %s\n", errorPtr);
 		}
-		return NULL;
-	}
-	cJSON* individualInfo = cJSON_GetObjectItem(stuJson, name);
-	cJSON* item = cJSON_GetObjectItem(individualInfo, "passwd");
-	memcpy(passwdQuery, item->valuestring, strlen(item->valuestring));
 
-	//长度不一致 false
-	if (strlen(item->valuestring) != strlen(passwd))
-	{
-		return false;
 	}
-	//字符不一致  错误
-	for (int i = 0; i < strlen(passwd); i++)
-	{
-		if (passwd[i] != passwdQuery[i])
-		{
-			return false;
-		}
-	}
-	return true;
+	cJSON* bookInfo = cJSON_GetObjectItem(bookJson, bookName);
+	
+	//获取count节点信息
+	cJSON* item = cJSON_GetObjectItem(bookInfo, "count");
+	int orgCount = item->valueint;
+	//修改count节点
+	cJSON_ReplaceItemInObject(bookInfo, "count", cJSON_CreateNumber(count+orgCount));
+	//将Json结构格式化到缓冲区
+	char * buffer =  cJSON_Print(bookJson);
+	//打开文件写入Json内容
+	FILE* fp = fopen("data_books.json", "w");
+	fwrite(buffer, strlen(buffer), 1, fp);
+	fflush(fp);
+	free(buffer);
+	fclose(fp);
 }
 
-
-void FILE_StuBrorrowOperate(cJSON* bookJson, cJSON* stuJson, char bookname[50])
+/*
+@FILE_ModifyStuInfoToJson() : 修改学生图书信息
+*/
+void FILE_ModifyStuInfoToJson( cJSON* stuJson, char bookname[50])
 {
 	char* buffer_book, * buffer_stu;
 	FILE* fp_book, * fp_stu;
@@ -113,7 +112,7 @@ void FILE_StuBrorrowOperate(cJSON* bookJson, cJSON* stuJson, char bookname[50])
 	buffer_book = cJSON_Print(stuJson);
 	//打开文件写入Json内容
 	fp_stu = fopen("data.json", "w");
-	fp_book = fopen("data_book.json", "w");
+	fp_book = fopen("data_books.json", "w");
 
 	fwrite(buffer_stu, strlen(buffer_stu), 1, fp_stu);
 	fwrite(buffer_book, strlen(buffer_book), 1, fp_book);
