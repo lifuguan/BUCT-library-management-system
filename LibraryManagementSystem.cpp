@@ -54,15 +54,22 @@ int main(int argc, char* argv[])
 		//登录
 		else if (actionSelect == _SIGN_IN)
 		{
-			MAIN_SignInDisplay();
+			int choice = MAIN_SignInDisplay();
 
 		}
 		//管理员登录
 		else if (actionSelect == _ADMIN)
 		{
 			int choice = MAIN_AdminSignInDisplay();
+			if (choice == 1)
+			{
+				MAIN_AdminAddBookDisplay();
+			}
+			else if (choice == 2)
+			{
 
-		
+			}
+			
 		}
 
 		else if (actionSelect == _QUIT) { return 0; }

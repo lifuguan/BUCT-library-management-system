@@ -1,8 +1,32 @@
 {
-	"bookName":	{
-		"bookNo":	"00001",
-		"publisher":	"publisher",
-		"date":	"2019.1.1",
-		"count":	7
+	"高等数学（上）":	{
+		"bookNo":	2,
+		"publisher":	"高等教育出版社",
+		"date":	"2019.7.9",
+		"count":	10
+	},
+	"高等数学（下）":	{
+		"bookNo":	3,
+		"publisher":	"高等教育出版社",
+		"date":	"2019.7.9",
+		"count":	10
+	},
+	"大学英语":	{
+		"bookNo":	4,
+		"publisher":	"外言出版社",
+		"date":	"2019.7.9",
+		"count":	10
+	},
+	"C++ Primer Plus":	{
+		"bookNo":	5,
+		"publisher":	"人民邮电出版社",
+		"date":	"2019.7.9",
+		"count":	10
+	},
+	"machine learning":	{
+		"bookNo":	7,
+		"publisher":	"我不知道呀",
+		"date":	"2019.7.9",
+		"count":	10
 	}
 }

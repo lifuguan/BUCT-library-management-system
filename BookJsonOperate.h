@@ -39,7 +39,7 @@ cJSON* File_ReadBooksInfoFromJson()
 @File_AddBookInfoToJson() : 将图书信息加载进json结构体中并写入data_books.json文件
 @返回 ： 成功后再次返回Json结构体的指针
 */
-cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
+cJSON* File_AddBookInfoToJson(cJSON* stuJson, int bookNo,
 	char bookname[50], char publisher[50], char date[20], int count)
 {
 	cJSON* memberDetail = cJSON_CreateObject();
@@ -47,7 +47,7 @@ cJSON* File_AddBookInfoToJson(cJSON* stuJson, char bookNo[10],
 	FILE* fp;
 
 	//生成嵌套Json对象
-	cJSON_AddStringToObject(memberDetail, "bookNo", bookNo);
+	cJSON_AddNumberToObject(memberDetail, "bookNo", bookNo);
 	cJSON_AddStringToObject(memberDetail, "publisher", publisher);
 	cJSON_AddStringToObject(memberDetail, "date", date);
 	cJSON_AddNumberToObject(memberDetail, "count", count);
