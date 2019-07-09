@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="BookJsonOperate.h" />
     <ClInclude Include="cJSON.h" />
+    <ClInclude Include="MainMenuDisplay.h" />
     <ClInclude Include="StuJsonOperate.h" />
   </ItemGroup>
   <ItemGroup>

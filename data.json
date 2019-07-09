@@ -19,5 +19,26 @@
 		"passwd":	"123456dw",
 		"bookNum":	0,
 		"bookLists":	[]
+	},
+	"jobs":	{
+		"stuNumber":	2018040206,
+		"classNumber":	13,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"bookLists":	[]
+	},
+	"ssd":	{
+		"stuNumber":	2018040206,
+		"classNumber":	123456,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"bookLists":	[]
+	},
+	"fuck":	{
+		"stuNumber":	2018040206,
+		"classNumber":	13,
+		"passwd":	"123456",
+		"bookNum":	0,
+		"bookLists":	[]
 	}
 }
