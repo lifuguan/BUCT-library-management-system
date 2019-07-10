@@ -2,12 +2,10 @@
 @author : Li Hao, Shen Penghui
 */
 #define _CRT_SECURE_NO_WARNINGS
-#include "StuJsonOperate.h"
-#include "BookJsonOperate.h"
+
 #include "MainMenuDisplay.h"
-#include<stdio.h>
-#include<string.h>
-#include <Windows.h>
+#include "StuMenuDisplay.h"
+#include "adminMenuDisplay.h"
 
 
 

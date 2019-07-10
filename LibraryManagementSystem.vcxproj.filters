@@ -35,6 +35,15 @@
     <ClInclude Include="MainMenuDisplay.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="StuMenuDisplay.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="adminMenuDisplay.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="menuInteract.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json">

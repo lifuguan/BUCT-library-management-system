@@ -155,10 +155,13 @@
     <ClCompile Include="LibraryManagementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adminMenuDisplay.h" />
     <ClInclude Include="BookJsonOperate.h" />
     <ClInclude Include="cJSON.h" />
     <ClInclude Include="MainMenuDisplay.h" />
+    <ClInclude Include="menuInteract.h" />
     <ClInclude Include="StuJsonOperate.h" />
+    <ClInclude Include="StuMenuDisplay.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />

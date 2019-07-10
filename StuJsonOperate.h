@@ -9,7 +9,7 @@
 #include<stdio.h>
 #include <string>
 
-char buff[8096] = {};
+char stuBuff[8096] = {};
 
 /*
 @JsonParseTest() : Json 解析测试函数，没啥卵用（没调用）
@@ -44,13 +44,13 @@ cJSON* File_ReadStuInfoToJson()
 	/*
 	@fread(): 返回真实读取的项数，若大于count则意味着产生了错误
 	*/
-	if (fread(buff, 8096, 1, fp)>=8096)
+	if (fread(stuBuff, 8096, 1, fp)>=8096)
 	{
 		printf("\033[47;31mOpen file correctly!\n\033[0m");
 		return NULL;
 	}
 	//解析Json
-	cJSON* stuJson = cJSON_Parse(buff);
+	cJSON* stuJson = cJSON_Parse(stuBuff);
 
 	free(json_data);
 	return stuJson;

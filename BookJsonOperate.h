@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include <string>
 #define LENGTH 4096
-char buff[LENGTH] = {};
+char bookBuff[LENGTH] = {};
 
 /*
 @File_ReadBooksInfoFromJson() : 从data_books.json文件中读取并解析成json格式
@@ -24,12 +24,12 @@ cJSON* File_ReadBooksInfoFromJson()
 	/*
 	@fread(): 返回真实读取的项数，若大于count则意味着产生了错误
 	*/
-	if (fread(buff, 1023, 1, fp) >= 1023)
+	if (fread(bookBuff, LENGTH, 1, fp) >= LENGTH)
 	{
 		printf("\033[47;31mOpen file correctly!\n\033[0m");
 	}
 	//解析Json
-	cJSON* stuJson = cJSON_Parse(buff);
+	cJSON* stuJson = cJSON_Parse(bookBuff);
 
 	free(json_data);
 	return stuJson;
