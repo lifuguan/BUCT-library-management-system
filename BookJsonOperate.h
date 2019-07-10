@@ -3,7 +3,7 @@
 #include "cJSON.h"
 #include<stdio.h>
 #include <string>
-#define LENGTH 2048
+#define LENGTH 4096
 char buff[LENGTH] = {};
 
 /*
@@ -126,7 +126,8 @@ void FILE_ModifyStuInfoToJson( cJSON* stuJson, char bookname[50])
 	fclose(fp_stu);
 	fclose(fp_book);
 }
-void FILE_AdminAddBookInfoToJson(cJSON* bookJson, char bookname[50])
-{
 
+void FILE_QueryAllBookInfo(cJSON* booksJson)
+{
+	//int i = cJSON_get
 }

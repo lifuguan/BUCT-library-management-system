@@ -6,37 +6,30 @@
 		"bookNum":	0,
 		"bookLists":	[]
 	},
-	"Jobs":	{
-		"stuNumber":	2018040206,
-		"classNumber":	123456,
-		"passwd":	"123456",
+	"peter":	{
+		"stuNumber":	2018040215,
+		"classNumber":	1080,
+		"passwd":	"123qwe",
 		"bookNum":	0,
 		"bookLists":	[]
 	},
-	"li":	{
-		"stuNumber":	2018040206,
+	"ning":	{
+		"stuNumber":	2017022010,
 		"classNumber":	1808,
-		"passwd":	"123456dw",
-		"bookNum":	0,
-		"bookLists":	[]
-	},
-	"jobs":	{
-		"stuNumber":	2018040206,
-		"classNumber":	13,
 		"passwd":	"123456",
 		"bookNum":	0,
 		"bookLists":	[]
 	},
-	"ssd":	{
-		"stuNumber":	2018040206,
-		"classNumber":	123456,
+	"ftyyy":	{
+		"stuNumber":	2018040201,
+		"classNumber":	1809,
 		"passwd":	"123456",
 		"bookNum":	0,
 		"bookLists":	[]
 	},
-	"fuck":	{
-		"stuNumber":	2018040206,
-		"classNumber":	13,
+	"fn":	{
+		"stuNumber":	2018040201,
+		"classNumber":	1808,
 		"passwd":	"123456",
 		"bookNum":	0,
 		"bookLists":	[]

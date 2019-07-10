@@ -8,6 +8,9 @@
 #include "cJSON.h"
 #include<stdio.h>
 #include <string>
+
+char buff[8096] = {};
+
 /*
 @JsonParseTest() : Json 解析测试函数，没啥卵用（没调用）
 @返回 ： 无
@@ -35,13 +38,13 @@ cJSON* File_ReadStuInfoToJson()
 		return NULL;
 	}
 
-	char buff[1024] = {};
+	
 	char* json_data = NULL;
 
 	/*
 	@fread(): 返回真实读取的项数，若大于count则意味着产生了错误
 	*/
-	if (fread(buff, 1023, 1, fp)>=1023)
+	if (fread(buff, 8096, 1, fp)>=8096)
 	{
 		printf("\033[47;31mOpen file correctly!\n\033[0m");
 		return NULL;
