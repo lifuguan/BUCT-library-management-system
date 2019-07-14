@@ -10,13 +10,13 @@
 #include "cJSON.h"
 #define   NR(x)   (sizeof(x)/sizeof(x[0]+0))
 
-//全局保存json学生对象,图书对象
-cJSON* stuJson, * bookJson;
 
 //定义结构体
 CONSOLE_CURSOR_INFO cci;
 //定义默认的坐标位置  	
 COORD pos = { 0,0 };
+
+char* selectedMenu[] = { (char*)"*      是                                                               *", (char*)"*      否                                                               *" };
 
 //定义枚举Keyboard的键值数据 
 enum
@@ -45,7 +45,7 @@ void color(short x)	//自定义函根据参数改变颜色
 
 
 
-void MAIN_MenuDisplay(HANDLE hOut, char** menu, int size, int index, int posY)
+void MAIN_MenuDisplay(HANDLE hOut, char** menu, int size, int index, int posY, int posX)
 {
 	int i;
 	for (i = 0; i < size; i++)
@@ -56,7 +56,7 @@ void MAIN_MenuDisplay(HANDLE hOut, char** menu, int size, int index, int posY)
 		{
 			//反色 
 			SetConsoleTextAttribute(hOut, 4 | BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-			pos.X = 26;
+			pos.X = posX;
 			pos.Y = posY + i;
 			//设置光标坐标
 			SetConsoleCursorPosition(hOut, pos);
@@ -67,7 +67,7 @@ void MAIN_MenuDisplay(HANDLE hOut, char** menu, int size, int index, int posY)
 		{
 
 			SetConsoleTextAttribute(hOut, 3);
-			pos.X = 26;
+			pos.X = posX;
 			pos.Y = posY + i;
 			//设置光标坐标
 			SetConsoleCursorPosition(hOut, pos);    //设置光标坐标

@@ -57,7 +57,7 @@ int MAIN_AdminSignInDisplay()
 			SetConsoleCursorInfo(hOut, &cci);
 			while (true)
 			{
-				MAIN_MenuDisplay(hOut, adminMenu, NR(adminMenu), index, 5);
+				MAIN_MenuDisplay(hOut, adminMenu, NR(adminMenu), index, 5, 26);
 				ret = MAIN_GetUserInput(&index, NR(adminMenu));
 				if (ret == ESC)
 					break;

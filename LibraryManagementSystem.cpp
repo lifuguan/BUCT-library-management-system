@@ -6,17 +6,21 @@
 #include "MainMenuDisplay.h"
 #include "StuMenuDisplay.h"
 #include "adminMenuDisplay.h"
-
+#include "BookJsonOperate.h"
 
 
 void RabitDisplay();
 
 void OrgDisplay();
 
-
+DWORD WINAPI ThreadReadJson(void* data);
 
 int main(int argc, char* argv[])
 {
+	HANDLE thread = CreateThread(NULL, 0, ThreadReadJson, NULL, 0, NULL);
+	stuJson = File_ReadStuInfoToJson();
+	bookJson = File_ReadBooksInfoFromJson();
+
 	SetConsoleTitleA(TITLE);
 	OrgDisplay();
 	color(3);
@@ -44,16 +48,47 @@ int main(int argc, char* argv[])
 		printf_s("                          *************************************************************************\n");
 
 		actionSelect = MAIN_MainDisplay(posY);
-		//注册
+		//学生注册
 		if (actionSelect == _SIGN_UP)
 		{
-			MAIN_SignUpDisplay();
+			MAIN_StuSignUpDisplay();
 		}
-		//登录
+		//学生登录
 		else if (actionSelect == _SIGN_IN)
 		{
-			int choice = MAIN_SignInDisplay();
+			bool status = false; status = STU_SignInDisplay();
+			if (status)
+			{
+				system("cls");
+				color(2);
+				printf_s("\n                                           <<<<<<<<<<<密码正确,登陆成功!>>>>>>>>>>>>>              \n\n");
+				color(3);
+			}
+			while (status)
+			{
+				int choice = STU_MainMenuDisplay();
+			
+				if (choice == 1)
+				{
+					FILE_QueryAllBookInfo();
+					int res = STU_QueryAllBookDisplay();
+					STU_BookSelectedEvent(res);
+					system("cls");
+					color(2);
+					printf_s("\n                                           <<<<<<<<<<<借阅成功，继续操作!>>>>>>>>>>>>>              \n\n");
+					color(3);
 
+				}
+				else if (choice == 2)
+				{
+
+				}
+				else if (choice == 3)
+				{
+
+				}
+				else { break; }
+			}
 		}
 		//管理员登录
 		else if (actionSelect == _ADMIN)
@@ -68,6 +103,7 @@ int main(int argc, char* argv[])
 
 			}
 			
+			
 		}
 
 		else if (actionSelect == _QUIT) { return 0; }
@@ -78,6 +114,7 @@ int main(int argc, char* argv[])
 			scanf("%d", &actionSelect);
 		}
 	}
+
 
 	return 0;
 }
@@ -144,4 +181,12 @@ void OrgDisplay()
 	Sleep(100);
 	printf_s("\n-----------------------------------------------------------------------------------------------------------------------\n");
 	Sleep(100);
+}
+
+
+DWORD WINAPI ThreadReadJson(void* data)
+{
+	stuJson = File_ReadStuInfoToJson();
+	bookJson = File_ReadBooksInfoFromJson();
+	return 0;
 }

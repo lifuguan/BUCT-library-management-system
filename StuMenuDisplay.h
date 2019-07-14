@@ -2,7 +2,7 @@
 
 #include "menuInteract.h"
 #include "StuJsonOperate.h"
-
+#include "BookJsonOperate.h"
 
 char* stuMenu[] =
 {
@@ -18,7 +18,7 @@ char name[50], passwd[50], passwdText[50];
 
 
 
-void MAIN_SignUpDisplay()
+void MAIN_StuSignUpDisplay()
 {
 	system("cls");
 	printf_s("                          *************************************************************************\n");
@@ -55,7 +55,7 @@ void MAIN_SignUpDisplay()
 	system("pause");
 }
 
-int MAIN_SignInDisplay()
+bool STU_SignInDisplay()
 {
 	system("cls");
 	printf("                          \n");
@@ -78,46 +78,7 @@ int MAIN_SignInDisplay()
 
 		if (res == true)
 		{
-			system("cls");
-			//变绿色
-			color(2);
-			printf_s("\n                                           <<<<<<<<<<<密码正确,登陆成功!>>>>>>>>>>>>>              \n\n");
-			color(3);
-			printf_s("                          *************************************************************************\n");
-			printf_s("                          *                                                                       *\n");
-			printf("\n\n\n\n");
-			printf_s("                          *                                                                       *\n");
-			printf_s("                          *************************************************************************\n");
-			int ret;
-			int index = 0;
-			HANDLE hOut;
-			//获取当前的句柄---设置为标准输出句柄 
-			hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-			//获取光标信息
-			GetConsoleCursorInfo(hOut, &cci);
-			//设置光标大小   
-			cci.dwSize = 1;
-			//设置光标不可见 FALSE   
-			cci.bVisible = 0;
-			//设置(应用)光标信息
-			SetConsoleCursorInfo(hOut, &cci);
-			while (true)
-			{
-				MAIN_MenuDisplay(hOut, stuMenu, NR(stuMenu), index, 5);
-				ret = MAIN_GetUserInput(&index, NR(stuMenu));
-				if (ret == ESC)
-					break;
-				if (ret == ENTER)
-				{
-					switch (index)
-					{
-					case 0:     return 1;  	//添加新的书籍
-					case 1:     return 2;  	//删除已有的书籍
-					case 2:     return 3;
-					case 3:		return 0;	//退出
-					}
-				}
-			}
+			return true;
 		}
 		else
 		{
@@ -126,5 +87,122 @@ int MAIN_SignInDisplay()
 			color(3);
 		}
 	}
+	return false;
 }
 
+int STU_MainMenuDisplay()
+{
+	//变绿色
+	printf("                          *************************************************************************\n");
+	printf("                          *                                                                       *\n");
+	printf("\n\n\n\n");
+	printf("                          *                                                                       *\n");
+	printf("                          *************************************************************************\n");
+	int ret;
+	int index = 0;
+	HANDLE hOut;
+	//获取当前的句柄---设置为标准输出句柄 
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//获取光标信息
+	GetConsoleCursorInfo(hOut, &cci);
+	//设置光标大小   
+	cci.dwSize = 1;
+	//设置光标不可见 FALSE   
+	cci.bVisible = 0;
+	//设置(应用)光标信息
+	SetConsoleCursorInfo(hOut, &cci);
+	while (true)
+	{
+		MAIN_MenuDisplay(hOut, stuMenu, NR(stuMenu), index, 5, 26);
+		ret = MAIN_GetUserInput(&index, NR(stuMenu));
+		if (ret == ESC)
+			break;
+		if (ret == ENTER)
+		{
+			switch (index)
+			{
+			case 0:     return 1;  	//添加新的书籍
+			case 1:     return 2;  	//删除已有的书籍
+			case 2:     return 3;
+			case 3:		return 0;	//退出
+			}
+		}
+	}
+}
+
+int STU_QueryAllBookDisplay()
+{
+	system("cls");
+	printf("                          *************************************************************************\n");
+	printf("      书名                   出版社                     书籍编号                剩余数量           时间\n");
+	printf("---------------------------------------------------------------------------------------------------------------\n");
+	int ret;
+	int index = 0;
+	HANDLE hOut;
+	//获取当前的句柄---设置为标准输出句柄	
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//获取光标信息
+	GetConsoleCursorInfo(hOut, &cci);
+	//设置光标大小   
+	cci.dwSize = 1;
+	//设置光标不可见 FALSE   
+	cci.bVisible = 0;
+	//设置(应用)光标信息
+	SetConsoleCursorInfo(hOut, &cci);
+	while (true)
+	{
+		MAIN_MenuDisplay(hOut, stuQueryMenu, bookCnt, index, 4, 5);
+		ret = MAIN_GetUserInput(&index, bookCnt);
+		if (ret == ESC)
+			return 0;
+		if (ret == ENTER)
+		{
+			return index + 1;
+		}
+	}
+
+
+}
+
+void STU_BookSelectedEvent(int selected)
+{
+	system("cls");
+	printf("\n\n                                                    是否选择借阅此书\n");
+	printf("                          *************************************************************************\n");
+	printf("                          *                                                                       *\n");
+	printf("\n\n");
+	printf("                          *                                                                       *\n");
+	printf("                          *************************************************************************\n");
+	int ret;
+	int index = 0;
+	HANDLE hOut;
+	//获取当前的句柄---设置为标准输出句柄	
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//获取光标信息
+	GetConsoleCursorInfo(hOut, &cci);
+	//设置光标大小   
+	cci.dwSize = 1;
+	//设置光标不可见 FALSE   
+	cci.bVisible = 0;
+	//设置(应用)光标信息
+	SetConsoleCursorInfo(hOut, &cci);
+	while (true)
+	{
+		MAIN_MenuDisplay(hOut, selectedMenu, 2, index, 5, 26);
+		ret = MAIN_GetUserInput(&index, 2);
+		if (ret == ESC)
+			break;
+		if (ret == ENTER)
+		{
+			if (index == 0)
+			{
+				FILE_ModifyBookInfoToJson(bookJson, bookName[selected - 1], -1);
+				break;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+}

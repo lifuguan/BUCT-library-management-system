@@ -7,12 +7,8 @@
 #define _SIGN_IN 2
 #define _ADMIN 3
 
-
-
-
-
-
-
+//全局保存json学生对象,图书对象
+cJSON* stuJson, * bookJson;
 
 //显示主菜单
 char* mainMenu[] =
@@ -43,7 +39,7 @@ int MAIN_MainDisplay(int posY)
 	SetConsoleCursorInfo(hOut, &cci);
 	while (true)
 	{
-		MAIN_MenuDisplay(hOut, mainMenu, NR(mainMenu), index, posY);
+		MAIN_MenuDisplay(hOut, mainMenu, NR(mainMenu), index, posY, 26);
 		ret = MAIN_GetUserInput(&index, NR(mainMenu));
 		if (ret == ESC)
 			break;

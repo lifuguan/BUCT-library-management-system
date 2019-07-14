@@ -4,7 +4,11 @@
 #include<stdio.h>
 #include <string>
 #define LENGTH 4096
+
 char bookBuff[LENGTH] = {};
+
+char* stuQueryMenu[100], bookName[100][20];
+int bookCnt;
 
 /*
 @File_ReadBooksInfoFromJson() : 从data_books.json文件中读取并解析成json格式
@@ -15,7 +19,7 @@ cJSON* File_ReadBooksInfoFromJson()
 	FILE* fp;
 	if ((fp = fopen("data_books.json", "r+")) == NULL)
 	{
-		printf("\033[47;31mCan't open file correctly!\033[0m");
+		printf("Can't open file correctly!");
 		return NULL;
 	}
 	
@@ -125,9 +129,60 @@ void FILE_ModifyStuInfoToJson( cJSON* stuJson, char bookname[50])
 
 	fclose(fp_stu);
 	fclose(fp_book);
+}               
+
+void transfor(int t, char a[200], char b[20]);
+
+void FILE_QueryAllBookInfo()
+{
+	char publisher[100][20], date[100][20];  int bookNo[100], count[100];
+	cJSON* booksJson = bookJson->child;
+
+	bookCnt = 0;
+
+
+	char str4[100][20] = {};
+	char str5[100][20] = {};
+	char a[100][200];
+
+	int i;
+	
+
+	while (booksJson != NULL)
+	{
+		memset(a[bookCnt], ' ', 150 * sizeof(char));
+		strcpy(bookName[bookCnt], booksJson->string);
+		bookNo[bookCnt] = booksJson->child->valueint;
+		strcpy(publisher[bookCnt], booksJson->child->next->valuestring);
+		strcpy(date[bookCnt], booksJson->child->next->next->valuestring);
+		count[bookCnt] = booksJson->child->next->next->next->valueint;
+
+
+		sprintf(str4[bookCnt], "%d", bookNo[bookCnt]);
+		sprintf(str5[bookCnt], "%d", count[bookCnt]);
+		i = strlen(date[bookCnt]);
+		transfor(0, a[bookCnt], bookName[bookCnt]);
+		transfor(23, a[bookCnt], publisher[bookCnt]);
+		transfor(51, a[bookCnt], str4[bookCnt]);
+		transfor(75, a[bookCnt], str5[bookCnt]);
+		transfor(94, a[bookCnt], date[bookCnt]);
+		a[bookCnt][94 + i] = '\0';
+
+
+		//char* type(char bookname[], char publisher[], int bookNo, int count, char date[]);
+		stuQueryMenu[bookCnt] = a[bookCnt];  
+		//printf(stuQueryMenu[bookCnt]);
+		booksJson = booksJson->next;
+		bookCnt++;
+	}
 }
 
-void FILE_QueryAllBookInfo(cJSON* booksJson)
+void transfor(int t, char a[200], char b[20])
 {
-	//int i = cJSON_get
+	int m = 0, k;
+	for (k = t; b[m] != '\0'; k++)
+	{
+		a[k] = b[m];
+		m = m + 1;
+	}
 }
