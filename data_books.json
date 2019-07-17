@@ -3,13 +3,13 @@
 		"bookNo":	2,
 		"publisher":	"高等教育出版社",
 		"date":	"2019.7.9",
-		"count":	7
+		"count":	6
 	},
 	"高等数学（下）":	{
 		"bookNo":	3,
 		"publisher":	"高等教育出版社",
 		"date":	"2019.7.9",
-		"count":	7
+		"count":	5
 	},
 	"大学英语":	{
 		"bookNo":	4,
@@ -21,7 +21,7 @@
 		"bookNo":	5,
 		"publisher":	"人民邮电出版社",
 		"date":	"2019.7.9",
-		"count":	10
+		"count":	8
 	},
 	"machine learning":	{
 		"bookNo":	7,
@@ -34,5 +34,23 @@
 		"publisher":	"khgg",
 		"date":	"2019.7.14",
 		"count":	1968020544
+	},
+	"1":	{
+		"bookNo":	1,
+		"publisher":	"1",
+		"date":	"2019.7.15",
+		"count":	1
+	},
+	"matlab  disgn":	{
+		"bookNo":	1,
+		"publisher":	"1",
+		"date":	"2019.7.15",
+		"count":	1
+	},
+	"i am your father":	{
+		"bookNo":	1,
+		"publisher":	"dwd",
+		"date":	"2019.7.16",
+		"count":	10
 	}
 }

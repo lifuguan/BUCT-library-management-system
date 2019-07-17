@@ -135,18 +135,15 @@ void transfor(int t, char a[200], char b[20]);
 
 void FILE_QueryAllBookInfo()
 {
-	char publisher[100][20], date[100][20];  int bookNo[100], count[100];
+	char publisher[20][20], date[20][20];  int bookNo[20], count[20];
 	cJSON* booksJson = bookJson->child;
 
 	bookCnt = 0;
 
-
-	char str4[100][20] = {};
-	char str5[100][20] = {};
-	char a[100][200];
-
+	char str4[20][20] = {};
+	char str5[20][20] = {};
+	char a[20][150];
 	int i;
-	
 
 	while (booksJson != NULL)
 	{
@@ -167,9 +164,6 @@ void FILE_QueryAllBookInfo()
 		transfor(75, a[bookCnt], str5[bookCnt]);
 		transfor(94, a[bookCnt], date[bookCnt]);
 		a[bookCnt][94 + i] = '\0';
-
-
-		//char* type(char bookname[], char publisher[], int bookNo, int count, char date[]);
 		stuQueryMenu[bookCnt] = a[bookCnt];  
 		//printf(stuQueryMenu[bookCnt]);
 		booksJson = booksJson->next;
@@ -186,3 +180,5 @@ void transfor(int t, char a[200], char b[20])
 		m = m + 1;
 	}
 }
+
+

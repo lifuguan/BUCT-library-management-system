@@ -3,8 +3,8 @@
 		"stuNumber":	1,
 		"classNumber":	11,
 		"passwd":	"123456",
-		"bookNum":	0,
-		"bookLists":	[]
+		"bookNum":	2,
+    "bookLists": [ "C++ Primer Plus", "machine learning" ]
 	},
 	"peter":	{
 		"stuNumber":	2018040215,

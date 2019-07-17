@@ -81,10 +81,22 @@ int main(int argc, char* argv[])
 				}
 				else if (choice == 2)
 				{
+					int num = FILE_StuBookReturnQuery(stuJson, name);
+					int res = STU_ReturnBookDisplay(num);
+					STU_BookReturnEvent(res, name);
+					system("cls");
+					color(2);
+					printf_s("\n                                           <<<<<<<<<<<归还成功，继续操作!>>>>>>>>>>>>>              \n\n");
+					color(3);
 
 				}
 				else if (choice == 3)
 				{
+					MAIN_StuPersonalInfoDisplay(stuJson, name);
+					system("cls");
+					color(2);
+					printf_s("\n                                           <<<<<<<<<<<    继续操作!    >>>>>>>>>>>>>              \n\n");
+					color(3);
 
 				}
 				else { break; }

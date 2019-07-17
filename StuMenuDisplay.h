@@ -160,8 +160,6 @@ int STU_QueryAllBookDisplay()
 			return index + 1;
 		}
 	}
-
-
 }
 
 void STU_BookSelectedEvent(int selected)
@@ -205,4 +203,129 @@ void STU_BookSelectedEvent(int selected)
 			}
 		}
 	}
+}
+
+
+
+int STU_ReturnBookDisplay(int bookCnt)
+{
+	system("cls");
+	printf("           ************************************选择要归还的书籍*************************************\n");
+	printf("      书名                   出版社                     书籍编号                剩余数量           时间\n");
+	printf("---------------------------------------------------------------------------------------------------------------\n");
+	int ret;
+	int index = 0;
+	HANDLE hOut;
+	//获取当前的句柄---设置为标准输出句柄	
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//获取光标信息
+	GetConsoleCursorInfo(hOut, &cci);
+	//设置光标大小   
+	cci.dwSize = 1;
+	//设置光标不可见 FALSE   
+	cci.bVisible = 0;
+	//设置(应用)光标信息
+	while (true)
+	{
+		MAIN_MenuDisplay(hOut, stuReturnMenu, bookCnt, index, 4, 5);
+		ret = MAIN_GetUserInput(&index, bookCnt);
+		if (ret == ESC)
+			return 0;
+		if (ret == ENTER)
+		{
+			return index + 1;
+		}
+	}
+}
+
+void STU_BookReturnEvent(int selected, char name[50])
+{
+	system("cls");
+	printf("\n\n                                                    是否选择归还此书\n");
+	printf("                          *************************************************************************\n");
+	printf("                          *                                                                       *\n");
+	printf("\n\n");
+	printf("                          *                                                                       *\n");
+	printf("                          *************************************************************************\n");
+	int ret;
+	int index = 0;
+	HANDLE hOut;
+	//获取当前的句柄---设置为标准输出句柄	
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//获取光标信息
+	GetConsoleCursorInfo(hOut, &cci);
+	//设置光标大小   
+	cci.dwSize = 1;
+	//设置光标不可见 FALSE   
+	cci.bVisible = 0;
+	//设置(应用)光标信息
+	SetConsoleCursorInfo(hOut, &cci);
+	while (true)
+	{
+		MAIN_MenuDisplay(hOut, selectedMenu, 2, index, 5, 26);
+		ret = MAIN_GetUserInput(&index, 2);
+		if (ret == ESC)
+			break;
+		if (ret == ENTER)
+		{
+			if (index == 0)
+			{
+				stuReturnMenu[selected - 1] = NULL;
+				
+				break;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+}
+
+
+void MAIN_StuPersonalInfoDisplay(cJSON* stuJson, char name[50])
+{
+	system("cls");
+	cJSON* stu = cJSON_GetObjectItem(stuJson, name);
+	
+	HANDLE hOut;
+	//获取当前的句柄---设置为标准输出句柄 
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//获取光标信息
+	GetConsoleCursorInfo(hOut, &cci);
+	//设置光标大小   
+	cci.dwSize = 1;
+	cci.bVisible = 1;
+	//设置(应用)光标信息
+	SetConsoleCursorInfo(hOut, &cci);
+	color(3);
+	printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+	printf("                          *************************************************************************\n");
+	printf("                          *                                                                       *\n");
+	printf("                          * 学生姓名   :                                                          *\n"); // 38
+	printf("                          * 学生学号   :                                                          *\n");
+	printf("                          * 学生班级   :                                                          *\n");
+	printf("                          * 已借书目   :                                                          *\n");
+	printf("                          *                                                                       *\n");
+	printf("                          *************************************************************************\n");
+	color(15);
+	pos.X = 41;   pos.Y = 4;
+
+	//清空输入缓存区
+	int c;  while ((c = getchar()) != '\n' && c != EOF);
+	//设置光标坐标
+	SetConsoleCursorPosition(hOut, pos); printf("%s", name);
+	pos.X = 41;   pos.Y = 5;
+	//设置光标坐标
+	SetConsoleCursorPosition(hOut, pos); printf("%d", stu->child->valueint);
+	pos.X = 41;   pos.Y = 6;
+	//设置光标坐标
+	SetConsoleCursorPosition(hOut, pos); printf("%d", stu->child->next->valueint);
+	pos.X = 41;   pos.Y = 7;
+	//设置光标坐标
+	SetConsoleCursorPosition(hOut, pos); printf("%d\n\n\n", stu->child->next->next->next->valueint);
+	pos.X = 41;   pos.Y = 10;
+	color(2);
+	system("pause");
+	color(3);
 }

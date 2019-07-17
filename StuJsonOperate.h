@@ -11,6 +11,8 @@
 
 char stuBuff[8096] = {};
 
+char* stuReturnMenu[10], str[10][150];
+
 /*
 @JsonParseTest() : Json 解析测试函数，没啥卵用（没调用）
 @返回 ： 无
@@ -131,3 +133,63 @@ bool FILE_StuPasswdCompare(cJSON* stuJson, char name[50], char passwd[50])
 	}
 	return true;
 }
+
+void STU_transfor(int t, char a[150], char b[20])
+{
+	int m = 0, k;
+	for (k = t; b[m] != '\0'; k++)
+	{
+		a[k] = b[m];
+		m = m + 1;
+	}
+}
+
+int FILE_StuBookReturnQuery(cJSON* stuJson, char name[50])
+{
+	if (stuJson == NULL)
+	{
+		const char* errorPtr = cJSON_GetErrorPtr();
+		if (errorPtr != NULL)
+		{
+			fprintf(stderr, "出现错误: %s\n", errorPtr);
+		}
+		return NULL;
+	}
+	//读取学生个人信息
+	cJSON* individualInfo = cJSON_GetObjectItem(stuJson, name);
+	//读取Array
+	cJSON* books = cJSON_GetObjectItem(individualInfo, "bookLists");
+	int bookSize = cJSON_GetArraySize(books);
+	char publisher[10][20], date[10][20], str3[10][20], str4[10][20];  int bookNo[10], count[10];
+	for (int iCnt = 0; iCnt < bookSize; iCnt++)
+	{
+		cJSON* pBook = cJSON_GetArrayItem(books, iCnt);
+		if (pBook == NULL)
+		{
+			continue;
+		}
+		memset(str[iCnt], ' ', 150 * sizeof(char));
+		cJSON* book = cJSON_GetObjectItem(bookJson, pBook->valuestring);
+		bookNo[iCnt] = book->child->valueint;
+		strcpy(publisher[iCnt], book->child->next->valuestring);
+		strcpy(date[iCnt], book->child->next->next->valuestring);
+		count[iCnt] = 1;
+		sprintf(str3[iCnt], "%d", bookNo[iCnt]);
+		sprintf(str4[iCnt], "%d", count[iCnt]);
+		int i = strlen(date[iCnt]);
+		STU_transfor(0, str[iCnt], pBook->valuestring);
+		STU_transfor(23, str[iCnt], publisher[iCnt]);
+		STU_transfor(51, str[iCnt], str3[iCnt]);
+		STU_transfor(75, str[iCnt], str4[iCnt]);
+		STU_transfor(94, str[iCnt], date[iCnt]);
+		str[iCnt][94 + i] = '\0';
+
+		stuReturnMenu[iCnt] = str[iCnt];
+	}
+
+	return bookSize;
+}
+
+
+
+
